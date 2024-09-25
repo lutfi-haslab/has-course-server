@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "start": "vercel dev",
+    "start": "bun src/index.ts",
     "dev": "bun --hot run src/index.ts",
     "deploy": "vercel"
   },
