@@ -1,10 +1,12 @@
 {
-  "type": "module", 
+  "type": "module",
   "scripts": {
     "start": "vercel dev",
+    "dev": "bun --hot run src/index.ts",
     "deploy": "vercel"
   },
   "dependencies": {
+    "@sentry/bun": "^8.31.0",
     "hono": "^4.4.2"
   },
   "devDependencies": {
