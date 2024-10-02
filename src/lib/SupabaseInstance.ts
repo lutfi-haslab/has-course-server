@@ -10,6 +10,7 @@ const createSupabaseClient = (): SupabaseClient => {
         autoRefreshToken: false,
         persistSession: false,
       },
+      
     });
     console.info(`✅ Connected to Supabase`);
     return client;

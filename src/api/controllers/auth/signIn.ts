@@ -1,41 +1,31 @@
 import { Context } from "hono";
-import { UsersService } from "../../../services/users.service";
+import { AuthService } from "../../../services/auth.service";
 import { HonoVariables } from "../../../shared/types";
 import { AuthUserSchema } from "../../../entities/models/auth.model";
-import {
-  BaseResponseSchema,
-  ResponseSchema,
-} from "../../../entities/models/response.model";
-import { UserSchema } from "../../../entities/models/user.model";
-import { z } from "@hono/zod-openapi";
+import { ResponseSchema, BaseResponseSchema } from "../../../entities/models/response.model";
 
-export const getUsersHandler = async (
+export const signInHandler = async (
   c: Context<{ Variables: HonoVariables }>
 ) => {
   try {
-    const { page, limit } = c.req.query();
-    const {data: user, count} = await UsersService(c).getUsers(Number(page), Number(limit));
+    const { email, password } = await c.req.json();
 
+    // Assuming AuthService(c).registerUser returns a user object that matches AuthUserSchema
+    const user = await AuthService(c).loginUser(email, password);
 
     const response = {
       code: 200,
       status: "success",
       data: user,
       messages: "User registered successfully",
-      pagination: {
-        page: Number(page),
-        limit: Number(limit),
-        total: Number(count),
-      }
     };
 
     // Validate the response
-    const parsedResponse = ResponseSchema(z.array(UserSchema)).parse(response);
+    const parsedResponse = ResponseSchema(AuthUserSchema).parse(response);
 
     // Pass the status code as part of the ResponseInit object
     return c.json(parsedResponse, 200);
   } catch (error) {
-    console.log("error", JSON.parse(error));
     const errorResponse = {
       code: 400,
       status: "error",
