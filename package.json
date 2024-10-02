@@ -10,9 +10,9 @@
   "dependencies": {
     "@hono/swagger-ui": "^0.4.1",
     "@hono/zod-openapi": "^0.16.2",
-    "@sentry/bun": "^8.31.0",
+    "@sentry/bun": "^8.32.0",
     "@supabase/supabase-js": "^2.45.4",
-    "hono": "^4.4.2"
+    "hono": "^4.6.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.21"
