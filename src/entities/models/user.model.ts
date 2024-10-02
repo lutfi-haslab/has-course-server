@@ -11,5 +11,6 @@ export const UserSchema = z.object({
     hash: z.string().nullable(),
     login_attempts: z.number().default(3),
     lock_until: z.string().nullable(),
+    uuid: z.string().nullable()
 });
 

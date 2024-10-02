@@ -14,6 +14,7 @@ import { captureException } from "@sentry/bun";
 import authRoutes from "./controllers/auth/authRoutes";
 import { Context, Next } from "hono";
 import authMiddleware from "./middlewares/auth.middleware";
+import courseRoute from "./controllers/course/courseRoute";
 
 const app = new OpenAPIHono<{ Variables: HonoVariables }>().basePath("/api");
 const apiRoutes = new OpenAPIHono();
@@ -42,6 +43,7 @@ app.get("/custom-error", (c) => {
 
 app.route("/auth", authRoutes);
 app.route("/users", userRoutes);
+app.route("/courses", courseRoute);
 app.get("/health", healthHandler);
 
 app.onError(errorHandler);

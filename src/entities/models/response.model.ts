@@ -3,7 +3,7 @@ import { z } from "@hono/zod-openapi";
 export const BaseResponseSchema = z.object({
   code: z.number(),
   status: z.string(),
-  messages: z.string(),
+  messages: z.string()
 });
 
 // export const ResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) => {
